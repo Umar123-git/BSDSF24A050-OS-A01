@@ -291,52 +291,26 @@ The T symbol type indicates that these functions are present in the executable's
 
 
 
+## Feature 4: Dynamic Library
 
-
-
-\## Feature 4: Dynamic Library
-
-
-
-\*\*1. What is Position-Independent Code (-fPIC) and why is it required for shared libraries?\*\*
-
-PIC generates machine code that doesn't depend on being loaded at a fixed memory address. 
-
-Since a .so can be loaded at different addresses in different processes (or multiple times), 
-
-its code must use relative addressing for data/functions instead of absolute addresses. 
-
-Without -fPIC, the code would need runtime relocation for every reference, which defeats 
-
+**1. What is Position-Independent Code (-fPIC) and why is it required for shared libraries?**
+PIC generates machine code that doesn't depend on being loaded at a fixed memory address.
+Since a .so can be loaded at different addresses in different processes (or multiple times),
+its code must use relative addressing for data/functions instead of absolute addresses.
+Without -fPIC, the code would need runtime relocation for every reference, which defeats
 memory sharing between processes and is disallowed for most shared library use.
 
-
-
-\*\*2. Explain the file size difference between static and dynamic clients.\*\*
-
-client\_static (17K) contains its own copy of the library machine code, embedded at link time.
-
-client\_dynamic is also small because the library code is NOT copied in — only references to 
-
-external symbols are stored; the actual libmyutils.so code loads into memory at runtime. 
-
-The real savings show on disk/memory when multiple programs share the same .so, and 
-
+**2. Explain the file size difference between static and dynamic clients.**
+client_static (17K) contains its own copy of the library machine code, embedded at link time.
+client_dynamic is also small because the library code is NOT copied in — only references to
+external symbols are stored; the actual libmyutils.so code loads into memory at runtime.
+The real savings show on disk/memory when multiple programs share the same .so, and
 in this case sizes are close since the library itself is tiny.
 
-
-
-\*\*3. What is LD\_LIBRARY\_PATH and why was it necessary?\*\*
-
-It's an environment variable telling the dynamic loader (ld.so) additional directories to 
-
-search for shared libraries at runtime. Since libmyutils.so isn't installed in a standard 
-
-system path (/usr/lib etc.), the loader couldn't find it by default, causing "cannot open 
-
-shared object file". Setting LD\_LIBRARY\_PATH to include ./lib let the loader resolve it. 
-
-This shows the OS loader's responsibility: resolving and mapping all shared dependencies 
-
+**3. What is LD_LIBRARY_PATH and why was it necessary?**
+It's an environment variable telling the dynamic loader (ld.so) additional directories to
+search for shared libraries at runtime. Since libmyutils.so isn't installed in a standard
+system path (/usr/lib etc.), the loader couldn't find it by default, causing "cannot open
+shared object file". Setting LD_LIBRARY_PATH to include ./lib let the loader resolve it.
+This shows the OS loader's responsibility: resolving and mapping all shared dependencies
 before the program can run, not just loading the executable itself.
-
