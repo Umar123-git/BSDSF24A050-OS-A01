@@ -314,3 +314,17 @@ system path (/usr/lib etc.), the loader couldn't find it by default, causing "ca
 shared object file". Setting LD_LIBRARY_PATH to include ./lib let the loader resolve it.
 This shows the OS loader's responsibility: resolving and mapping all shared dependencies
 before the program can run, not just loading the executable itself.
+
+## Feature 5: Man Pages and Installation
+
+Created man pages for all six library functions (mystrlen, mystrcpy, mystrncpy,
+mystrcat, wordCount, mygrep) under man/man3/, each following standard groff
+sections: .TH, .SH NAME, .SH SYNOPSIS, .SH DESCRIPTION, .SH RETURN VALUE, .SH AUTHOR.
+
+Added an `install` target to the Makefile that copies the compiled client
+binary to /usr/local/bin/client and the man pages to /usr/local/share/man/man3/,
+then runs `mandb` to refresh the manual page index. After running
+`sudo make install`, the program is runnable from anywhere by typing `client`,
+and its documentation is viewable via `man mystrlen` (and the other function names),
+confirming that the installation correctly makes the tool and its docs available
+system-wide like a standard Linux utility.
