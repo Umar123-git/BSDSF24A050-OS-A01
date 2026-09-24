@@ -2,21 +2,21 @@ REPORT.md
 
 
 
-\# Operating Systems Assignment 1
+# Operating Systems Assignment 1
 
-\## BSDSF24A050
-
-
-
-\# Module 2 – Multi-file Build
+## BSDSF24A050
 
 
 
-\## Report Questions
+# Module 2 – Multi-file Build
 
 
 
-\### 1. Explain the linking rule in this part's Makefile: $(TARGET): $(OBJECTS). How does it differ from a Makefile rule that links against a library?
+## Report Questions
+
+
+
+### 1. Explain the linking rule in this part's Makefile: $(TARGET): $(OBJECTS). How does it differ from a Makefile rule that links against a library?
 
 
 
@@ -184,15 +184,15 @@ Attaching binaries such as bin/client or bin/client\_static is useful because us
 
 
 
-\# Module 3 – Static Library
+# Module 3 – Static Library
 
 
 
-\## Report Questions
+## Report Questions
 
 
 
-\### 1. Compare the Makefile from Part 2 and Part 3. What are the key differences in the variables and rules that enable the creation of a static library?
+### 1. Compare the Makefile from Part 2 and Part 3. What are the key differences in the variables and rules that enable the creation of a static library?
 
 
 
@@ -244,7 +244,7 @@ Therefore, the main difference is that Part 3 separates the reusable functions i
 
 
 
-\### 2. What is the purpose of the ar command? Why is ranlib often used immediately after it?
+### 2. What is the purpose of the ar command? Why is ranlib often used immediately after it?
 
 
 
@@ -268,7 +268,7 @@ With the GNU ar rcs command used in this assignment, the s option already create
 
 
 
-\### 3. When you run nm on your client\_static executable, are the symbols for functions like mystrlen present? What does this tell you about how static linking works?
+### 3. When you run nm on your client\_static executable, are the symbols for functions like mystrlen present? What does this tell you about how static linking works?
 
 
 
