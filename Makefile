@@ -65,4 +65,9 @@ clean:
 
 rebuild: clean all
 
-.PHONY: all clean rebuild
+.PHONY: all clean rebuild install
+install: all
+	@mkdir -p /usr/local/bin /usr/local/share/man/man3
+	sudo cp $(TARGET) /usr/local/bin/client
+	sudo cp man/man3/*.3 /usr/local/share/man/man3/
+	sudo mandb
